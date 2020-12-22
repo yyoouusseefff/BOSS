@@ -51,8 +51,6 @@ chmod +x ./ins
 exit;
 fi
 
-TOKEN=`cat ./inc/Token.txt`
-BOTID=`echo $TOKEN | cut -f1 -d":"`
 
 if [ ! -f "./inc/Token.txt" ]; then
 echo -e "${RED}
@@ -63,7 +61,8 @@ echo -e "${RED}
 lua ./inc/Run.lua
 exit;
 else
-
+TOKEN=`cat ./inc/Token.txt`
+BOTID=`echo $TOKEN | cut -f1 -d":"`
 Sudo=$(redis-cli get ${BOTID}:SUDO_ID:)
 if [[ $Sudo == "" ]]; then
 rm -fr ./inc/Token.txt
@@ -72,9 +71,10 @@ exit;
 fi
 fi
 
-Sudo=$(redis-cli get ${BOTID}:UserNameBot:)
+UserBot=$(redis-cli get ${BOTID}:UserNameBot:)
 
 echo "$Sudo"
+echo "$UserBot"
 
 chmod +x ./TG  
 
@@ -85,10 +85,10 @@ sudo rm -fr ~/.telegram-cli
 ./TG -s ./inc/Run.lua --bot=$TOKEN
 done
 else 
-if ! screen -list | grep -q "$Sudo"; then
-screen -S "$Sudo" ./run R
+if ! screen -list | grep -q "$UserBot"; then
+screen -S "$UserBot" ./run R
 else
-screen -X -S "$Sudo" quit
-screen -S "$Sudo" ./run R
+screen -X -S "$UserBot" quit
+screen -S "$UserBot" ./run R
 fi
 fi
