@@ -749,7 +749,6 @@ input_inFo(msg)
 end,nil)
 elseif data.ID == "UpdateOption" and data.value_.value_ == "Ready" then
 UpdateSource() dofile("./inc/Run.lua")
-os.execute("rm -fr ./BOSS")
 tdcli_function({ID='GetChat',chat_id_ = SUDO_ID},function(arg,data)end,nil)
 end
 
