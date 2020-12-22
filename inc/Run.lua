@@ -117,15 +117,13 @@ print([[
     rm -rf ./.git
     chmod +x ./run
     mv ../BOSS ../]]..BOT_User..[[ ;
-
     ./run
     ]])
 os.execute([[
 rm -f ./README.md
 rm -rf ./.git
 chmod +x ./run
-rm -fr ../]]..BOT_User..[[
-mv ../BOSS ../]]..BOT_User..[[
+mv ../BOSS ../]]..BOT_User..[[ ;
 ../]]..BOT_User..[[/run
 ]])
 end
