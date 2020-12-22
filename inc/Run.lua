@@ -19,7 +19,6 @@ URL    = (loadfile "./libs/url.lua")()
 Er_utf8  , utf8  = pcall(require, "lua-utf8")
 redis = redis.connect('127.0.0.1',6379)
 
-local serpent = require("serpent")
 
 
 if not Er_ssl then
@@ -30,10 +29,6 @@ end
 if not Er_utf8 then
 print("('\n\27[1;31m￤Pkg >> UTF_8 is Not installed.'\n\27[0m￤")
 os.exit()
-end
-
-local vardump = function(value)
-print(serpent.block(value, {comment = false}))
 end
 
 
@@ -495,7 +490,6 @@ local list = redis:hgetall(boss..":AwamerBotArray:"..msg.chat_id_)
 for Boss2,k in pairs(list) do
 Text = msg.text
 Text2 = k
-vardump(Boss2)
 if Text:match(Boss2) then 
 local amrr = {Text:match(Boss2)}
 local AmrOld = redis:hgetall(boss..":AwamerBotArray2:"..msg.chat_id_)
@@ -568,7 +562,6 @@ end
 
 function tdcli_update_callback(data)
 local msg = data.message_
---vardump(msg)
 if data.ID == "UpdateMessageSendFailed" then 
 if msg and msg.sender_user_id_ then
 redis:srem(boss..'users',msg.sender_user_id_)
