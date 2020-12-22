@@ -23,15 +23,15 @@ Version=`lsb_release -rs | cut -f1 -d"."`
 
 if [ "$Version" == "18" ];then
 echo -e "${GREEN}
- ▀█████████▄   ▄██████▄     ▄████████    ▄████████
-   ███    ███ ███    ███   ███    ███   ███    ███
-   ███    ███ ███    ███   ███    █▀    ███    █▀
-  ▄███▄▄▄██▀  ███    ███   ███          ███
- ▀▀███▀▀▀██▄  ███    ███ ▀███████████ ▀███████████ ¦ Dev : @TH3BOSS
-   ███    ██▄ ███    ███          ███          ███ ¦ Dev : @OMMMM
-   ███    ███ ███    ███    ▄█    ███    ▄█    ███ ¦ Source TH3BOSS
- ▄█████████▀   ▀██████▀   ▄████████▀   ▄████████▀  ¦ BY @TH3BS
- ---------------------------------------------------------------------${CNIL}"
+▀█████████▄   ▄██████▄     ▄████████    ▄████████
+███    ███ ███    ███   ███    ███   ███    ███
+███    ███ ███    ███   ███    █▀    ███    █▀
+▄███▄▄▄██▀  ███    ███   ███          ███
+▀▀███▀▀▀██▄  ███    ███ ▀███████████ ▀███████████ ¦ Dev : @TH3BOSS
+███    ██▄ ███    ███          ███          ███ ¦ Dev : @OMMMM
+███    ███ ███    ███    ▄█    ███    ▄█    ███ ¦ Source TH3BOSS
+▄█████████▀   ▀██████▀   ▄████████▀   ▄████████▀  ¦ BY @TH3BS
+---------------------------------------------------------------------${CNIL}"
 echo -e "${RED}| للاسف لايمكنك تنصيب السورس ع نظام اوبنتو {${Version}} يجب ان يكون على اصدار  اقل مثلا  ${SMAY}14 او 16
 ${CNIL}";
 echo -e "${RED}| Sorry Canot install Source on Ubuntu {${Version}} Please install system To Ubuntu ${SMAY}14 or 16 ${RED} For Run The Source Th3Boss 
@@ -51,6 +51,9 @@ chmod +x ./ins
 exit;
 fi
 
+TOKEN=`cat ./inc/Token.txt`
+BOTID=`echo $TOKEN | cut -f1 -d":"`
+
 if [ ! -f "./inc/Token.txt" ]; then
 echo -e "${RED}
 ¦
@@ -60,8 +63,7 @@ echo -e "${RED}
 lua ./inc/Run.lua
 exit;
 else
-TOKEN=`cat ./inc/Token.txt`
-BOTID=`echo $TOKEN | cut -f1 -d":"`
+
 Sudo=$(redis-cli get ${BOTID}:SUDO_ID:)
 if [[ $Sudo == "" ]]; then
 rm -fr ./inc/Token.txt
@@ -70,6 +72,9 @@ exit;
 fi
 fi
 
+Sudo=$(redis-cli get ${BOTID}:UserNameBot:)
+
+echo "$Sudo"
 
 chmod +x ./TG  
 
@@ -80,10 +85,10 @@ sudo rm -fr ~/.telegram-cli
 ./TG -s ./inc/Run.lua --bot=$TOKEN
 done
 else 
-if ! screen -list | grep -q "boss"; then
-screen -S boss ./run R
+if ! screen -list | grep -q "$Sudo"; then
+screen -S "$Sudo" ./run R
 else
-screen -X -S boss quit
-screen -S boss ./run R
+screen -X -S "$Sudo" quit
+screen -S "$Sudo" ./run R
 fi
 fi
