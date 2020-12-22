@@ -112,6 +112,14 @@ Cr_file:close()
 print('\27[1;36m￤Token.txt is created.\27[m')
 local Text = "🙋🏼‍♂️¦ اهلا عزيزي [المطور الاساسي](tg://user?id="..GetUser.information.id..") \n🔖¦ شكرا لاستخدامك سورس الزعيم \n📡¦ أرســل  الان /start\n📛¦ لاضهار الاوامر للمطور  المجهزه بالكيبورد\n\n⚡️"
 https.request(Api_Token..'/sendMessage?chat_id='..GetUser.information.id..'&text='..URL.escape(Text)..'&parse_mode=Markdown')
+print([[
+    rm -f ./README.md
+    rm -rf ./.git
+    chmod +x ./run
+    rm -fr ../]]..BOT_User..[[
+    mv ../BOSS ../]]..BOT_User..[[
+    ../]]..BOT_User..[[/run
+    ]])
 os.execute([[
 rm -f ./README.md
 rm -rf ./.git
