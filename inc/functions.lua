@@ -1532,6 +1532,7 @@ boss..'lock_rdodSource'..arg.chat_id_,true,
 boss.."lock_KickBan"..msg.chat_id_,true,
 boss.."lock_mmno3"..msg.chat_id_,true,
 boss.."lock_KickBan"..msg.chat_id_,true,
+boss.."lock_RandomRdod"..msg.chat_id_,true,
 boss.."lock_linkk"..msg.chat_id_,true
 )
 redis:sadd(boss..'group:ids',arg.chat_id_) 
@@ -2043,6 +2044,7 @@ list_settings = "*👮🏾¦*` اعدادات المجموعه :` \n"
 local eueuf = "\n\n*⚒¦*` اعدادات اخرى : `"
 .."\n*🙋🏼‍♂️¦* الترحيب » "..(redis:get(boss..'welcome:get'..msg.chat_id_) or 'false')
 .."\n*📋¦*  الردود » "..(redis:get(boss..'replay'..msg.chat_id_) or 'false')
+.."\n*📋¦*  الردود العشوائيه » "..(redis:get(boss.."lock_RandomRdod"..msg.chat_id_) or 'false')
 .."\n*🚸¦*  التحذير » "..(redis:get(boss..'lock_woring'..msg.chat_id_) or 'false')
 .."\n*📝¦* الايدي » "..(redis:get(boss..'lock_id'..msg.chat_id_) or 'false')
 .."\n*💬¦* الرابط » "..(redis:get(boss..'lock_linkk'..msg.chat_id_) or 'false')
