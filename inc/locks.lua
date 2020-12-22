@@ -12,6 +12,33 @@
 
 
 ---------------Lock ------------------- 
+function unlock_replayRn(msg)
+if not msg.Director then return "📪¦ هذا الامر يخص {المطور,المنشئ,المدير} فقط  " end
+GetUserID(msg.sender_user_id_,function(arg,data)
+msg = arg.msg 
+local NameUser   = Hyper_Link_Name(data)
+if redis:get(boss.."lock_RandomRdod"..msg.chat_id_) then 
+return sendMsg(msg.chat_id_,msg.id_,"🔓¦ تم بالتأكيد تفعيل الردود العشوائيه    \n📮¦ بواسطه ⋙「 "..NameUser.." 」 " ) 
+else redis:set(boss.."lock_RandomRdod"..msg.chat_id_,true)
+return sendMsg(msg.chat_id_,msg.id_,"🔓¦ تم تفعيل الردود العشوائيه بنجاح   \n📮¦ بواسطه ⋙「 "..NameUser.." 」 " ) 
+end 
+end,{msg=msg})
+end
+
+function lock_replayRn(msg)
+if not msg.Director then return "📪¦ هذا الامر يخص {المطور,المنشئ,المدير} فقط  " end
+GetUserID(msg.sender_user_id_,function(arg,data)
+msg = arg.msg 
+local NameUser   = Hyper_Link_Name(data)
+if not redis:get(boss.."lock_RandomRdod"..msg.chat_id_) then 
+return sendMsg(msg.chat_id_,msg.id_,"🔒¦ تم بالتأكيد تعطيل الردود العشوائيه    \n📮¦ بواسطه ⋙「 "..NameUser.." 」 " ) 
+else redis:del(boss.."lock_RandomRdod"..msg.chat_id_) 
+return sendMsg(msg.chat_id_,msg.id_,"🔒¦ تم تعطيل الردود العشوائيه بنجاح   \n📮¦ بواسطه ⋙「 "..NameUser.." 」 " ) 
+end
+end,{msg=msg})
+end 
+
+---------------Lock ------------------- 
 function unlock_KickBan(msg)
 if not msg.Creator then return "📪¦ هذا الامر يخص {المطور,المنشئ} فقط  " end
 GetUserID(msg.sender_user_id_,function(arg,data)
