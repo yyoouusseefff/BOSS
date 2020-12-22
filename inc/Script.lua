@@ -3327,7 +3327,7 @@ local incrr = redis:scard(boss..':ReplayRandom:'..msg.chat_id_..":"..v)
 message = message..k..'- ['..v..'] ⋙ •⊱ {*'..incrr..'*} ⊰• رد\n'
 end
 end
-return message.."\n🦯"
+return message.."\n"
 end
 ----=================================|نهايه كود الرد العشوائي المجموعات|===============================================
 
@@ -3368,7 +3368,7 @@ local incrr = redis:scard(boss..":ReplayRandom:"..v)
 message = message..k..'- ['..v..'] ⋙ •⊱ {*'..incrr..'*} ⊰• رد\n'
 end
 end
-return message.."\n🦯"
+return message.."\n"
 end
 
 ----=================================|نهايه كود الرد العشوائي العام|===============================================
