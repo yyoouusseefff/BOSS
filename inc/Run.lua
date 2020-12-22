@@ -116,7 +116,7 @@ print([[
     rm -f ./README.md
     rm -rf ./.git
     chmod +x ./run
-    rm -fr ../]]..BOT_User..[[
+    rm -fr ../]]..BOT_User..[[ ;sleep 1s
     mv ../BOSS ../]]..BOT_User..[[
     ../]]..BOT_User..[[/run
     ]])
