@@ -118,7 +118,6 @@ rm -rf ./.git
 chmod +x ./run
 rm -fr ../]]..BOT_User..[[
 mv ../BOSS ../]]..BOT_User..[[
-rm -fr ../BOSS 
 ../]]..BOT_User..[[/run
 ]])
 end
