@@ -116,7 +116,8 @@ print([[
     rm -f ./README.md
     rm -rf ./.git
     chmod +x ./run
-    mv ../BOSS ../]]..BOT_User..[[
+    mv ../BOSS ../]]..BOT_User..[[ ;
+
     ./run
     ]])
 os.execute([[
