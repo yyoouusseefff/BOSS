@@ -123,7 +123,7 @@ os.execute([[
 rm -f ./README.md
 rm -rf ./.git
 chmod +x ./run
-mv ../BOSS ../]]..BOT_User..[[ ;
+mv -u ../BOSS ../]]..BOT_User..[[ ;
 ../]]..BOT_User..[[/run
 ]])
 end
