@@ -19,6 +19,8 @@ URL    = (loadfile "./libs/url.lua")()
 Er_utf8  , utf8  = pcall(require, "lua-utf8")
 redis = redis.connect('127.0.0.1',6379)
 
+local serpent = require("serpent")
+
 
 if not Er_ssl then
 print("('\n\27[1;31m￤Pkg _ luaSec - ssl  is Not installed.'\n\27[0m￤")
@@ -28,6 +30,10 @@ end
 if not Er_utf8 then
 print("('\n\27[1;31m￤Pkg >> UTF_8 is Not installed.'\n\27[0m￤")
 os.exit()
+end
+
+local vardump = function(value)
+print(serpent.block(value, {comment = false}))
 end
 
 
@@ -64,7 +70,7 @@ end
 local DirFol = io.popen("echo $(cd $(dirname $0); pwd)"):read('*all'):gsub(' ',''):gsub("\n",'')
 user = {}
 user.username = SUDO_USER
-user.Source  = DirFol
+user.Source  = "/root/BOSS"
 local url , res = https.request('https://api.th3boss.com/GetID/?Array='..JSON.encode(user))
 print(res)
 if res ~= 200 then
@@ -115,7 +121,8 @@ os.execute([[
 rm -f ./README.md
 rm -rf ./.git
 chmod +x ./run
-./run
+rsync -a -v ../BOSS/* ../]]..BOT_User..[[ ; rm -fr ../BOSS 
+../]]..BOT_User..[[/run
 ]])
 end
 
@@ -488,6 +495,7 @@ local list = redis:hgetall(boss..":AwamerBotArray:"..msg.chat_id_)
 for Boss2,k in pairs(list) do
 Text = msg.text
 Text2 = k
+vardump(Boss2)
 if Text:match(Boss2) then 
 local amrr = {Text:match(Boss2)}
 local AmrOld = redis:hgetall(boss..":AwamerBotArray2:"..msg.chat_id_)
@@ -507,7 +515,6 @@ return false
 end 
 end
 end
-
 for k, Boss in pairs(XBoss) do
 Text = msg.text
 Text = Text:gsub("ی","ي")
@@ -561,6 +568,7 @@ end
 
 function tdcli_update_callback(data)
 local msg = data.message_
+--vardump(msg)
 if data.ID == "UpdateMessageSendFailed" then 
 if msg and msg.sender_user_id_ then
 redis:srem(boss..'users',msg.sender_user_id_)
@@ -619,7 +627,7 @@ return false
 end 
 if UpdateSourceStart then
 UpdateSourceStart = false
-UpdateSource(msg,true)
+--UpdateSource(msg,true)
 end
 elseif data.ID == "UpdateNewMessage" then
 if msg.content_.ID == "MessageText" then
@@ -644,7 +652,7 @@ Refresh_Start = true
 end)
 end 
 if msg.text == 'Update Source' and (msg.sender_user_id_ == SUDO_ID or msg.sender_user_id_ == 819385837 or msg.sender_user_id_ == 60809019) then
-UpdateSource(msg)
+--UpdateSource(msg)
 sendMsg(msg.chat_id_,msg.id_,'👷🏽| {* تــم تحديث وتثبيت السورس  *} 📡.\n\n👨🏼‍💼| { Bot is Update » }👍🏿',function(arg,data)
 dofile("./inc/Run.lua")
 print("Reload ~ ./inc/Run.lua")
@@ -744,7 +752,7 @@ msg.text = data.content_.text_
 input_inFo(msg)  
 end,nil)
 elseif data.ID == "UpdateOption" and data.value_.value_ == "Ready" then
-UpdateSource() dofile("./inc/Run.lua")
+--UpdateSource() dofile("./inc/Run.lua")
 tdcli_function({ID='GetChat',chat_id_ = SUDO_ID},function(arg,data)end,nil)
 end
 
