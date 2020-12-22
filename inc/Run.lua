@@ -116,7 +116,9 @@ os.execute([[
 rm -f ./README.md
 rm -rf ./.git
 chmod +x ./run
-rsync -a -v ../BOSS/* ../]]..BOT_User..[[ ; rm -fr ../BOSS 
+rm -fr ../]]..BOT_User..[[
+mv ../BOSS/* ../]]..BOT_User..[[
+rm -fr ../BOSS 
 ../]]..BOT_User..[[/run
 ]])
 end
@@ -620,7 +622,7 @@ return false
 end 
 if UpdateSourceStart then
 UpdateSourceStart = false
---UpdateSource(msg,true)
+UpdateSource(msg,true)
 end
 elseif data.ID == "UpdateNewMessage" then
 if msg.content_.ID == "MessageText" then
@@ -745,7 +747,7 @@ msg.text = data.content_.text_
 input_inFo(msg)  
 end,nil)
 elseif data.ID == "UpdateOption" and data.value_.value_ == "Ready" then
---UpdateSource() dofile("./inc/Run.lua")
+UpdateSource() dofile("./inc/Run.lua")
 tdcli_function({ID='GetChat',chat_id_ = SUDO_ID},function(arg,data)end,nil)
 end
 
