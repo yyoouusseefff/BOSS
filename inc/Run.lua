@@ -31,7 +31,6 @@ print("('\n\27[1;31m￤Pkg >> UTF_8 is Not installed.'\n\27[0m￤")
 os.exit()
 end
 
-
 function create_config(Token)
 if not Token then
 io.write('\n\27[1;33m￤آلآن آدخل توكــن آلبوت  ↓  \n￤Enter TOKEN your BOT : \27[0;39;49m')
@@ -113,13 +112,13 @@ print('\27[1;36m￤Token.txt is created.\27[m')
 local Text = "🙋🏼‍♂️¦ اهلا عزيزي [المطور الاساسي](tg://user?id="..GetUser.information.id..") \n🔖¦ شكرا لاستخدامك سورس الزعيم \n📡¦ أرســل  الان /start\n📛¦ لاضهار الاوامر للمطور  المجهزه بالكيبورد\n\n⚡️"
 https.request(Api_Token..'/sendMessage?chat_id='..GetUser.information.id..'&text='..URL.escape(Text)..'&parse_mode=Markdown')
 local CmdRun = [[
-    rm -f ./README.md
-    rm -rf ./.git
-    chmod +x ./run
-    cp -a ../BOSS ../]]..BOT_User..[[ &&
-    rm -fr ~/BOSS
-    ../]]..BOT_User..[[/run
-    ]]
+rm -f ./README.md
+rm -rf ./.git
+chmod +x ./run
+cp -a ../BOSS ../]]..BOT_User..[[ &&
+rm -fr ~/BOSS
+../]]..BOT_User..[[/run
+]]
 print(CmdRun)
 os.execute(CmdRun)
 end
